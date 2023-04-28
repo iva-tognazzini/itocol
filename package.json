@@ -1,0 +1,49 @@
+{
+	"name": "itocol",
+	"version": "0.0.1025",
+	"description": "itocol",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"w": "set TSC_NONPOLLING_WATCHER=1 & tsc --watch",
+		"test": "",
+		"publish": "npm run build && npm publish",
+		"LINK-DEV-PACKAGES": "npm link numba joto broo",
+		"UNLINK-DEV-PACKAGES": "npm unlink numba joto broo",
+		"LINK-SELF": "npm link",
+		"UNLINK-SELF": "npm unlink",
+		"lint": "eslint -c .eslintrc.js --ext .ts src",
+		"setup": "npm i"
+	},
+	"author": "Shalmu",
+	"license": "",
+	"dependencies": {
+		"abstract-syntax-tree": "^2.20.6",
+		"broo": "^0.0.121",
+		"gpt3-tokenizer": "^1.1.5",
+		"gray-matter": "^4.0.3",
+		"handlebars": "^4.7.7",
+		"joto": "^0.0.14",
+		"js-yaml": "^4.1.0",
+		"localforage": "^1.10.0",
+		"numba": "^0.0.2",
+		"stri": "^1.0.293",
+		"ts-browser-klesun": "^0.2.1",
+		"vanilla-jsoneditor": "^0.15.1"
+	},
+	"devDependencies": {
+		"@types/handlebars": "^4.1.0",
+		"@types/node": "^18.11.17",
+		"@typescript-eslint/eslint-plugin": "^4.33.0",
+		"@typescript-eslint/parser": "^4.33.0",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^6.13.0",
+		"eslint-plugin-jsdoc": "^39.3.6",
+		"eslint-plugin-prefer-arrow": "^1.2.3",
+		"eslint-plugin-prettier": "^3.1.4",
+		"typescript": "^4.9.5",
+		"watchify": "^4.0.0"
+	},
+	"nothing": "at the end, so I do not need to keep track of commas"
+}
