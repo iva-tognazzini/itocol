@@ -2,7 +2,7 @@
 
 <!-- <img align="right" width="160" height="160" src="./assets/images/itocol_320.png"> -->
 
-The "itocol" (short for "Ivuška Protocol") offers a straightforward method building LLM projects and experimenting quickly.
+The "itocol" (short for "Ivuška Protocol") offers a straightforward method for building LLM projects and experimenting quickly.
 
 ## Sample Code and Documentation
 

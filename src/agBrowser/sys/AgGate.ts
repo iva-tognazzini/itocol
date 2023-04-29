@@ -70,21 +70,21 @@ export class AgGate {
 			async function onGrowth(txt: string, done: boolean) {
 				if (failed) return;
 				const link = This.en.aiTextToURL(txt);
-				let hereitocolResult: AgResponse | null = null;
+				let hereItocolResult: AgResponse | null = null;
 				try {
-					hereitocolResult = await This.requestSmart(link);
+					hereItocolResult = await This.requestSmart(link);
 				} catch (e: any) {
 					return failReturn(`dev`, err2str(e).stripHtmlTags);
 				}
-				if (!hereitocolResult || hereitocolResult.error) return failReturn(`dev`, hereitocolResult?.error);
-				else if (hereitocolResult.promptPageSource) {
+				if (!hereItocolResult || hereItocolResult.error) return failReturn(`dev`, hereItocolResult?.error);
+				else if (hereItocolResult.promptPageSource) {
 					updateStride(url, txt);
 					onProgress(o);
 					if (done) {
 						await runNextPromptPage(link);
 					}
-				} else if (hereitocolResult.output) {
-					const x = hereitocolResult.output;
+				} else if (hereItocolResult.output) {
+					const x = hereItocolResult.output;
 					o.text = /*`[from output for real] ` +*/ x.text;
 					o.time = x.time;
 					if (done) o.done = true;

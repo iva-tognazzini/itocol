@@ -1,6 +1,6 @@
 {
 	"name": "itocol",
-	"version": "0.0.1025",
+	"version": "0.0.1",
 	"description": "itocol",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
