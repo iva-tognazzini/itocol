@@ -50,7 +50,7 @@ export async function hajaxEndpointExists(url: string | string[], fromLastCache:
 		}
 		return ``;
 	}
-	const res = await hajax(url, fromLastCache, 0);
+	const res = await hajax(url, fromLastCache, 2);
 	jot(`Exists: /end ::: exists? ${!res.failed}: `, url);
 	return res.failed ? `` : url;
 }

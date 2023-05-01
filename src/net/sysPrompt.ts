@@ -28,13 +28,14 @@ export function defaultSysModelConf(): AgModelConf {
 	return {
 		model: o.model,
 		prompt: ``,
-		temperature: .0,
+		temperature: .9,
 		input_tokens: Math.round(o.max * .7),
 		tokens: Math.min(5520, Math.round(o.max * .2)),// THIS affects the response number of tokens!!!
 		top_p: 1,
 		fp: 0,
 		pp: 0,
-		stop: [`Owner:`],// [`I:`, `You:`, `AI:`],
+		// stop:  [`I:`, `You:`, `AI:`],
+		stop: [`Spirit:`, `Fyodor:`],
 	};
 }
 

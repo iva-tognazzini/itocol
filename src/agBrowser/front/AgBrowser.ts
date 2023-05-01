@@ -98,7 +98,7 @@ export async function launchAgBrowser(agentUrl: string) {
 	Stage._.addS(broWin).addS(chatWin);
 	broWin.resizable(false).draggable(false);
 	chatWin.draggable(false).on(`resized`, e => {
-		jot(chatWin.dim.innerWidth);
+		// jot(chatWin.dim.innerWidth);
 		broWin.style({ left: `calc(${chatWin.dim.innerWidth}px + ${pad}*3)`, });
 	});
 
@@ -264,9 +264,12 @@ export class AgBrowser extends Thang<`path changed` | `output done` | `output pr
 		});
 		this.model.on(`clear messages`, _ => {
 			if (!confirm(`Are you sure you want to clear all messages?`)) return;
-			this.en.agMsg.purgeAll().then(_ => {
+			(async () => {
+				const _ = this.en.agMsg.purgeAll();
+				await this.en.purgeState(this.en.currentFullUrl);
+
 				location.href = location.href.split(`#`)[0];
-			}).catch(jotErr);
+			})().catch(jotErr);
 		}).on(`compile`, (_: any) => {
 			(async () => {
 				const agentName = getAgentName(this.currentUrlVerbatim);

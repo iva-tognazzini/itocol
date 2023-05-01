@@ -1,5 +1,5 @@
 import { confJot, jot, jotErr } from "joto/lib/jot";
-import { Dict } from "joto/lib/jotypes";
+import { Dict, ObjAny } from "joto/lib/jotypes";
 import { Numba } from "numba";
 import { Stri } from "stri";
 import { launchAgBrowser } from "./agBrowser/front/AgBrowser";
@@ -24,6 +24,7 @@ export class ITOCOL {
 	static getASTFuncs() {
 		return { parse, generate, replace };
 	}
+	static currentLibs: ObjAny = [];
 	static compilationCurrent = {
 		name: ``,
 		path: ``,

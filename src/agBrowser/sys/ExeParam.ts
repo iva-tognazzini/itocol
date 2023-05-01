@@ -23,6 +23,7 @@ export type Exe<STATE extends ObjAny, VARS extends ObjAny> = {
 	dialogue: DialogueItem[], // the dialogue history, NOT including the current user/ai input
 	query: ExeQuery<VARS>,
 	system: SystemExe,
+	libs: ObjAny,
 }
 
 export type SystemExe = {

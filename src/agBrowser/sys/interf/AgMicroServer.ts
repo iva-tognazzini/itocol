@@ -1,4 +1,4 @@
-import { o2s, o2sB, s2o } from "joto/lib/sys";
+import { o2s, o2sB, pause, s2o } from "joto/lib/sys";
 import { ajax, ajaxEndpointExists } from "broo/o/net/ajax";
 import { jotClr, jotErr } from "joto/lib/jot";
 import { Dict } from "joto/lib/jotypes";
@@ -16,8 +16,9 @@ const ajax1 = async (url: string) => {
 	return ajax(url, null, 1);
 }
 
+
 class MicroServer {
-	readonly path = `http://localhost:55808/micro/`;
+	readonly path = `http://localhost:${location.port || `44707`}/micro/`;
 	ok = true;
 	async init(currentUrl: string) {
 		if (Emu.get(currentUrl).on) return true;
@@ -33,7 +34,6 @@ class MicroServer {
 			this.ok = false;
 			this.#notRunningWarn();
 			return false;
-
 		}
 		return true;
 	}
@@ -48,11 +48,19 @@ class MicroServer {
 	}
 	async fingerprintAg(path: string) {
 
-		if (Emu.get(path).on) return ``;
-		const res = await ajax1(this.path + `?fingerprintAg=${encodeURIComponent(path)}&___hash=${Math.random()}`);
-		if (res.failed)
-			throw new Error(`failed to request the fingerprint at ${path}`);
-		return res.txt;
+		const attempt = async () => {
+			if (Emu.get(path).on) return ``;
+			const res = await ajax1(this.path + `?fingerprintAg=${encodeURIComponent(path)}&___hash=${Math.random()}`);
+			if (res.failed) return ``;
+			return res.txt;
+		}
+		let left = 8;
+		while (left--) {
+			const res = await attempt();
+			if (res) return res;
+			await pause(50);
+		}
+		throw new Error(`failed to request the fingerprint at ${path}`);
 	}
 	// async list(path: string) {
 	// 	// debugger;

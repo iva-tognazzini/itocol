@@ -212,7 +212,8 @@ export class AgEngine {
 			},
 			system: {
 				parse, generate, replace
-			}
+			},
+			libs: ITOCOL.currentLibs,
 		};
 		if (foundUrlTs) {
 			const cont = this.currentTsCont = quick ? this.currentTsCont : (await hajax(foundUrlTs, quick)).txt;
@@ -311,6 +312,10 @@ export class AgEngine {
 	async saveState(url?: string, state?: any) {
 		url = url || this.currentGeneralPath;
 		await this.stateKeeper.set(getBaseAgentPath(url), state);
+	}
+	async purgeState(url?: string) {
+		url = url || this.currentGeneralPath;
+		await this.stateKeeper.purge(getBaseAgentPath(url));
 	}
 	async #getInitialEmptyStateFromTsFile(url: string, quick: boolean) {
 		const base = getBaseAgentPath(url);
